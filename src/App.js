@@ -12,6 +12,10 @@ import {evaluate} from 'mathjs';
 let numExist = true;
 const numArray = [];
 let i = 1;
+let num1 = 0;
+let op = '';
+let num2 = 0;
+let sum = 0;
 
 function App() {
   const [currentCal, setcurrentCal] = useState([]);
@@ -24,19 +28,93 @@ function App() {
         setresultCal(0);
         setcurrentCal('');
         break;
-
       case '+':
         if (resultCal === '0') {
           break;
         } else {
+          num1 = resultCal;
+          op = value;
           setcurrentCal(`${resultCal}+`);
           numExist = false;
           i = 1;
           break;
         }
-
-      default:
+      case '-':
         if (resultCal === '0') {
+          break;
+        } else {
+          num1 = resultCal;
+          op = value;
+          setcurrentCal(`${resultCal}-`);
+          numExist = false;
+          i = 1;
+          break;
+        }
+      case 'x':
+        if (resultCal === '0') {
+          break;
+        } else {
+          num1 = resultCal;
+          op = value;
+          setcurrentCal(`${resultCal}x`);
+          numExist = false;
+          i = 1;
+          break;
+        }
+      case '/':
+        if (resultCal === '0') {
+          break;
+        } else {
+          num1 = resultCal;
+          op = value;
+          setcurrentCal(`${resultCal}/`);
+          numExist = false;
+          i = 1;
+          break;
+        }
+      case '%':
+        if (resultCal === '0') {
+          break;
+        } else {
+          num1 = resultCal;
+          op = value;
+          setcurrentCal(`${resultCal}%`);
+          numExist = false;
+          i = 1;
+          break;
+        }
+      case '+/-':
+        if (resultCal === '0') {
+          break;
+        } else {
+          setresultCal(resultCal * -1);
+          break;
+        }
+      case 'Del':
+        if (resultCal === '0') {
+          break;
+        } else {
+          setresultCal('');
+          break;
+        }
+      case '=':
+        num2 = resultCal;
+        if (op === '+') {
+          sum = parseInt(num1, 10) + parseInt(num2, 10);
+        } else if (op === '-') {
+          sum = parseInt(num1, 10) - parseInt(num2, 10);
+        } else if (op === 'x') {
+          sum = parseInt(num1, 10) * parseInt(num2, 10);
+        } else if (op === '/') {
+          sum = parseInt(num1, 10) / parseInt(num2, 10);
+        } else if (op === '%') {
+          sum = parseInt(num1, 10) % parseInt(num2, 10);
+        }
+        setresultCal(sum);
+        setcurrentCal('');
+        break;
+      default:
+        if ((resultCal === '0' || resultCal === 0) && value !== '.') {
           setresultCal(value);
           numArray[0] = value;
         } else if (numExist === true) {

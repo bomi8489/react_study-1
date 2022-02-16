@@ -94,7 +94,7 @@ function App() {
         if (resultCal === '0') {
           break;
         } else {
-          setresultCal('');
+          setresultCal(0);
           break;
         }
       case '=':
